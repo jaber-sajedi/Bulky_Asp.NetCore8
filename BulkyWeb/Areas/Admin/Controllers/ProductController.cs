@@ -27,14 +27,12 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-
-
             List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
 
             return View(objProductList);
         }
 
-        #endregion
+        #endregion Product List
 
         #region Upsert Product
 
@@ -96,7 +94,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                             System.IO.File.Delete(oldImage);
                         }
                     }
-                    
+
                     using (var fileStrem = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStrem);
@@ -105,9 +103,9 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     productVm.Product.ImageUrl = @"/images/Product/" + fileName;
                 }
 
-                if (productVm.Product.Id==0)
+                if (productVm.Product.Id == 0)
                 {
-                _unitOfWork.Product.Add(productVm.Product);
+                    _unitOfWork.Product.Add(productVm.Product);
                 }
                 else
                 {
@@ -139,7 +137,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
         }
 
-        #endregion
+        #endregion Upsert Product
 
         #region Delete Product
 
@@ -163,6 +161,18 @@ namespace BulkyWeb.Areas.Admin.Controllers
             TempData["success"] = "Product delete not succeed";
             return Redirect("Index");
         }
+        #endregion
+
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objProductList });
+        }
+
+
         #endregion
 
     }

@@ -1,13 +1,7 @@
-﻿using Bulky.DataAccess.Reposotory.IReposotory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Data;
+using Bulky.DataAccess.Reposotory.IReposotory;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Bulky.DataAccess.Reposotory
 {
