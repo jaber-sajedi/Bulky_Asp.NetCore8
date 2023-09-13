@@ -1,8 +1,10 @@
 using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Reposotory;
 using Bulky.DataAccess.Reposotory.IReposotory;
+using Bulky.Utility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +22,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServe
 #region Dependency Injection
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 #endregion
 
 #region Identity
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddRazorPages();
 
 
