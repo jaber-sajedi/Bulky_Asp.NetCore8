@@ -8,10 +8,10 @@ namespace Bulky.Utility
 {
     public static class SD
     {
-        public static string Role_User_Customer = "Customer";
-        public static string Role_User_Company = "Company";
-        public static string Role_Admin = "Admin";
-        public static string Role_Employee = "Employee";
+        public const string Role_User_Customer = "Customer";
+        public const string Role_User_Company = "Company";
+        public const string Role_Admin = "Admin";
+        public const string Role_Employee = "Employee";
     }
 }
  

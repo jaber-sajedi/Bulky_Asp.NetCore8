@@ -1,10 +1,13 @@
 ﻿using Bulky.DataAccess.Reposotory.IReposotory;
 using Bulky.Models.Models;
+using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         #region MyRegion
@@ -15,7 +18,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        #endregion
+        #endregion 
 
         public IActionResult Index()
         {

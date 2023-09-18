@@ -19,19 +19,31 @@ builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServe
 
 #endregion
 
+#region Identity
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddRazorPages();
+
+#endregion
+
+#region Cookie config
+
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.LoginPath = $"/Identity/Account/Login";
+    option.LogoutPath = $"/Identity/Account/Logout";
+    option.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+
+#endregion
+
 #region Dependency Injection
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 #endregion
 
-#region Identity
 
-builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-builder.Services.AddRazorPages();
-
-
-#endregion
 
 var app = builder.Build();
 
