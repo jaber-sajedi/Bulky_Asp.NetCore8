@@ -96,16 +96,15 @@
     </div>
 </div>
 
-@section Scripts
-{
+@section Scripts{
     <script>
         tinymce.init({
             selector: 'textarea',
-            plugins: '  mentions anchor autolink charmap codesample emoticons   lists  searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough  | align lineheight  | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
         });
     </script>
-
-    <partial name="_ValidationScriptsPartial" />
-
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
 }
